@@ -8,6 +8,7 @@ import { Footer } from "./component/footer";
 import CharacterDetails from "./views/CharacterDetails.jsx";
 import PlanetDetails from "./views/PlanetDetails.jsx";
 import VehicleDetails from "./views/VehiclesDetails.jsx";
+import { Toaster } from "sonner";
 
 //create your first component
 const Layout = () => {
@@ -18,6 +19,7 @@ const Layout = () => {
   return (
     <div>
       <BrowserRouter basename={basename}>
+        <Toaster position="top-center" />
         <ScrollToTop>
           <Navbar />
           <Routes>

@@ -1,3 +1,5 @@
+import { toast } from "sonner";
+
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
@@ -82,6 +84,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         });
 
         console.log(store.favorites);
+        toast.success("Added to Favorites");
       },
     },
   };
