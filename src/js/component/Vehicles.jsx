@@ -1,14 +1,19 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 
-const Planets = () => {
+const Vehicles = () => {
   const { store, actions } = useContext(Context);
+  const [selectedVehicle, setSelectedVehicle] = useState(null);
 
   const addToFavorites = (vehicle) => {
     actions.addFavorites(vehicle);
+  };
+
+  const showMoreInfo = (vehicle) => {
+    setSelectedVehicle(vehicle);
   };
 
   return (
@@ -19,7 +24,7 @@ const Planets = () => {
           <div
             className="col-4"
             key={index}
-            style={{ flex: "0 0 auto", maxWidth: "35%" }}
+            style={{ flex: "0 0 auto", maxWidth: "25%" }}
           >
             <div className="card m-2">
               <img
@@ -43,11 +48,13 @@ const Planets = () => {
                   onClick={() => addToFavorites(vehicle)}
                   style={{ cursor: "pointer", marginRight: "10px" }}
                 />
-                <FontAwesomeIcon
-                  icon={faInfoCircle}
-                  onClick={() => showMoreInfo(vehicle)}
-                  style={{ cursor: "pointer" }}
-                />
+                <Link to={`/vehicle-details/${index + 1}`}>
+                  <FontAwesomeIcon
+                    icon={faInfoCircle}
+                    onClick={() => showMoreInfo(vehicle)}
+                    style={{ cursor: "pointer" }}
+                  />
+                </Link>
               </div>
             </div>
           </div>
@@ -57,4 +64,4 @@ const Planets = () => {
   );
 };
 
-export default Planets;
+export default Vehicles;

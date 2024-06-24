@@ -55,12 +55,32 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       addFavorites: (item) => {
         const store = getStore();
+        let newItem;
+
+        if (item.url.includes("/people/")) {
+          newItem = {
+            type: "character",
+            name: item.name,
+            id: item.url.split("/")[5],
+          };
+        } else if (item.url.includes("/planets/")) {
+          newItem = {
+            type: "planet",
+            name: item.name,
+            id: item.url.split("/")[5],
+          };
+        } else if (item.url.includes("/vehicles/")) {
+          const id = store.favorites.length + 1; // Generate a simple unique id
+          newItem = { type: "vehicle", name: item.name, id: id.toString() }; // Convert id to string
+        } else {
+          console.error("Unsupported item type:", item);
+          return;
+        }
+
         setStore({
-          favorites: [
-            ...store.favorites,
-            { name: item.name, id: item.url.split("/")[5] },
-          ],
+          favorites: [...store.favorites, newItem],
         });
+
         console.log(store.favorites);
       },
     },

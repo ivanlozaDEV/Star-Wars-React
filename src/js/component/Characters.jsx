@@ -24,7 +24,7 @@ const Characters = () => {
           <div
             className="col-4"
             key={index}
-            style={{ flex: "0 0 auto", maxWidth: "35%" }}
+            style={{ flex: "0 0 auto", maxWidth: "25%" }}
           >
             <div className="card m-2">
               <img

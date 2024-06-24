@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -24,7 +24,7 @@ const Planets = () => {
           <div
             className="col-4"
             key={index}
-            style={{ flex: "0 0 auto", maxWidth: "35%" }}
+            style={{ flex: "0 0 auto", maxWidth: "25%" }}
           >
             <div className="card m-2">
               <img
