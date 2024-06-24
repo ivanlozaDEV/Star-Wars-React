@@ -1,17 +1,47 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import StarWarsLogo from "../../img/star-wars-logo-1002.png";
+import "../../styles/Navbar.css";
+import { Context } from "../store/appContext";
+import Modal from "./Modal.jsx";
 
 export const Navbar = () => {
-	return (
-		<nav className="navbar navbar-light bg-light mb-3">
-			<Link to="/">
-				<span className="navbar-brand mb-0 h1">React Boilerplate</span>
-			</Link>
-			<div className="ml-auto">
-				<Link to="/demo">
-					<button className="btn btn-primary">Check the Context in action</button>
-				</Link>
-			</div>
-		</nav>
-	);
+  const [modalVisible, setModalVisible] = useState(false);
+  const { store } = useContext(Context);
+
+  const showModal = () => {
+    setModalVisible(true);
+  };
+
+  const hideModal = () => {
+    setModalVisible(false);
+  };
+  return (
+    <>
+      <nav className="navbar navbar-dark bg-dark">
+        <div className="container d-flex justify-content-between">
+          <Link to="/">
+            <img
+              src={StarWarsLogo}
+              className="StarWarsLogo ms-2"
+              alt="Star Wars Logo"
+            />
+          </Link>
+          <button
+            type="button"
+            className="btn btn-light position-relative"
+            onClick={showModal}
+          >
+            Favorites
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              {store.favorites.length}
+            </span>
+          </button>
+        </div>
+      </nav>
+      {modalVisible && (
+        <Modal favorites={store.favorites} onClose={hideModal} />
+      )}
+    </>
+  );
 };

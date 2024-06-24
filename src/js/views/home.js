@@ -1,15 +1,38 @@
 import React from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
-import "../../styles/home.css";
+import StarWarsBackground from "../../img/paul-volkmer-qVotvbsuM_c-unsplash.jpg";
 
-export const Home = () => (
-	<div className="text-center mt-5">
-		<h1>Hello Rigo!</h1>
-		<p>
-			<img src={rigoImage} />
-		</p>
-		<a href="#" className="btn btn-success">
-			If you see this green button, bootstrap is working
-		</a>
-	</div>
-);
+import "../../styles/home.css";
+import Characters from "../component/Characters.jsx";
+import Planets from "../component/Planetas.jsx";
+import Vehicles from "../component/Vehicles.jsx";
+export const Home = () => {
+  return (
+    <div
+      id="homeBody"
+      className="container-fluid"
+      style={{
+        backgroundImage: `url(${StarWarsBackground})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: 0,
+        padding: 0,
+      }}
+    >
+      <div className="container-fluid d-flex flex-column m-4">
+        <div className="container my-4">
+          <Characters />
+        </div>
+        <div className="container my-4">
+          <Planets />
+        </div>
+        <div className="container my-4">
+          <Vehicles />
+        </div>
+      </div>
+    </div>
+  );
+};
