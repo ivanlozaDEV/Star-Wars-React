@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/modal.css";
 
-export const Modal = ({ favorites, onClose }) => {
+export const Modal = ({ favorites, onClose, onDelete }) => {
   const renderFavoriteLink = (favorite) => {
     let linkUrl;
     if (favorite.type === "character") {
@@ -18,8 +18,17 @@ export const Modal = ({ favorites, onClose }) => {
     }
 
     return (
-      <li key={favorite.id} onClick={onClose}>
-        <Link to={linkUrl}>{favorite.name}</Link>
+      <li key={favorite.id}>
+        <Link to={linkUrl} onClick={onClose}>
+          {favorite.name}
+        </Link>
+        <button
+          onClick={() => onDelete(favorite.id)}
+          type="button"
+          className="btn btn-outline-danger btn-sm ms-2 mt-1 "
+        >
+          Delete
+        </button>
       </li>
     );
   };
@@ -28,17 +37,17 @@ export const Modal = ({ favorites, onClose }) => {
     <div className="modal-overlay">
       <div className="modal-content">
         <div className="modal-header">
-          <h5 className="modal-title">Favorites</h5>
-          <button type="button" className="close" onClick={onClose}>
+          <h5 className="modal-title text-light">Favorites</h5>
+          <button type="button" className="close text-light" onClick={onClose}>
             &times;
           </button>
         </div>
-        <div className="modal-body">
+        <div className="modal-body ">
           <ul className="list-unstyled">
             {favorites.length > 0 ? (
               favorites.map((favorite) => renderFavoriteLink(favorite))
             ) : (
-              <li>No favorites added yet.</li>
+              <li className="text-light">No favorites added yet.</li>
             )}
           </ul>
         </div>

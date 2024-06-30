@@ -26,7 +26,10 @@ const Characters = () => {
             key={index}
             style={{ flex: "0 0 auto", maxWidth: "25%" }}
           >
-            <div className="card m-2">
+            <div
+              className="card m-2"
+              style={{ backgroundColor: "rgba(255, 255, 255, 0.5)" }}
+            >
               <img
                 src={`https://starwars-visualguide.com/assets/img/characters/${
                   character.url.split("/")[5]
@@ -38,7 +41,7 @@ const Characters = () => {
                     "https://starwars-visualguide.com/assets/img/placeholder.jpg")
                 }
               />
-              <div className="card-body">
+              <div className="card-body text-light">
                 <h5 className="card-title">{character.name}</h5>
                 <p className="card-text">Birth: {character.birth_year}</p>
               </div>

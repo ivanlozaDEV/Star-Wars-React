@@ -7,7 +7,7 @@ import Modal from "./Modal.jsx";
 
 export const Navbar = () => {
   const [modalVisible, setModalVisible] = useState(false);
-  const { store } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
   const showModal = () => {
     setModalVisible(true);
@@ -16,6 +16,7 @@ export const Navbar = () => {
   const hideModal = () => {
     setModalVisible(false);
   };
+
   return (
     <>
       <nav className="navbar navbar-dark bg-dark">
@@ -33,14 +34,18 @@ export const Navbar = () => {
             onClick={showModal}
           >
             Favorites
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
               {store.favorites.length}
             </span>
           </button>
         </div>
       </nav>
       {modalVisible && (
-        <Modal favorites={store.favorites} onClose={hideModal} />
+        <Modal
+          favorites={store.favorites}
+          onClose={hideModal}
+          onDelete={actions.deleteFavorite}
+        />
       )}
     </>
   );

@@ -86,6 +86,15 @@ const getState = ({ getStore, getActions, setStore }) => {
         console.log(store.favorites);
         toast.success("Added to Favorites");
       },
+      deleteFavorite: (id) => {
+        const store = getStore();
+        const updatedFavorites = store.favorites.filter((fav) => fav.id !== id);
+
+        setStore({ favorites: updatedFavorites });
+
+        console.log(updatedFavorites);
+        toast.success("Removed from Favorites");
+      },
     },
   };
 };
